@@ -15,7 +15,7 @@
 log/
 target/
 
-# compiled. libraries
+# output sources
 build/
 out/
 
