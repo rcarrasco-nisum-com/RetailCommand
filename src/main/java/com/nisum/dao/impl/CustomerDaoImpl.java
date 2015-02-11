@@ -22,7 +22,7 @@ public class CustomerDaoImpl implements CustomerDao {
 		
 		try {
 			
-			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("products.csv", false), "UTF-8"));
+			BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("customers.csv", false), "UTF-8"));
 		
 			for (Customer customer : list) {
 				
