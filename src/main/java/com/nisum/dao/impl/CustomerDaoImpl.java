@@ -25,7 +25,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	
 	public static final String CSV_SEPARATOR = ",";
 	
-	public static final String CSV_FILE = "customer.csv";
+	public static final String CSV_FILE = "/work/workspace/RetailCommand/customer.csv";
 	
 	public static final String CSV_ENCODING = "UTF-8";
 	
@@ -107,7 +107,6 @@ public class CustomerDaoImpl implements CustomerDao {
 		}
 		
 	}
-
 
 	@Override
 	public List<Customer> getAll() {

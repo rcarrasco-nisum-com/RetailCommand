@@ -1,9 +1,9 @@
 package com.nisum.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.nisum.dao.ProductDao;
-import com.nisum.model.Product;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -12,12 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.nisum.dao.ProductDao;
+import com.nisum.model.Product;
+import com.wordnik.swagger.annotations.Api;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/hello")
+@Api(value = "services", description = "hello world services!")
 public class HelloController {
 
     @Autowired
@@ -32,7 +35,7 @@ public class HelloController {
 		return "hello";
 	}
 
-    @RequestMapping(value = "/gsonExample",
+	@RequestMapping(value = "/gsonExample",
             method = RequestMethod.GET, produces = "application/json")
     public @ResponseBody
     String getParamTypesActiveList() throws IOException {
@@ -79,4 +82,5 @@ public class HelloController {
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
         return gson.toJson(productList);
     }
+	
 }
