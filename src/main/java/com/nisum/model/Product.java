@@ -11,6 +11,13 @@ public class Product {
     private String size;
     private String country;
 
+    public Product(String code, String type, Double price, String size, String country) {
+    }
+
+    public Product() {
+
+    }
+
     public String getCode() {
         return code;
     }
