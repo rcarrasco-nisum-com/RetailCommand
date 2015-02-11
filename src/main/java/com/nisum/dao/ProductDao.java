@@ -11,9 +11,11 @@ public interface ProductDao {
 
     public List <Product> findAll();
 
-    public List <Product> findByType(String type);
+    public Product findByType(String code);
 
     public int create(Product product);
+
+    public int create(List <Product> products);
 
     public int update(Product product);
 
