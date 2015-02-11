@@ -10,5 +10,6 @@
       <AppenderRef ref="Console"/>
     </Root>
     <Logger name="com.nisum.app" level="debug" />
+    <Logger name="com.nisum.dao" level="info" />
   </Loggers>
 </Configuration>
