@@ -47,6 +47,9 @@ public class AppMain {
 		
 		service.save(customerList);
 		
+		List<Customer> all = service.getAll();
+		logger.info("all.size = " + all.size());
+		
 	}
 	
 }

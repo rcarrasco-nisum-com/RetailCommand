@@ -17,7 +17,32 @@ public class CustomerServiceImpl implements CustomerService {
 	
 	@Override
 	public void save(List<Customer> list) {
-		dao.write(list);
+		dao.save(list);
+	}
+
+	@Override
+	public void save(Customer customer) {
+		dao.save(customer);
+	}
+
+	@Override
+	public List<Customer> getAll() {
+		return dao.getAll();
+	}
+
+	@Override
+	public Customer get(String name) {
+		return dao.get(name);
+	}
+
+	@Override
+	public void update(Customer customer) {
+		dao.update(customer);
+	}
+
+	@Override
+	public void delete(Customer customer) {
+		dao.delete(customer);
 	}
 
 }

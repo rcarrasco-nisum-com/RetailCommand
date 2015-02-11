@@ -24,3 +24,6 @@ out/
 .bin/
 .build/
 .gradle/
+
+# files
+*.csv
