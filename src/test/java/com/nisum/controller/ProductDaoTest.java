@@ -71,7 +71,7 @@ public class ProductDaoTest {
         Assert.assertEquals(1,code);
     }
 
-    @Test
+    @Test @Ignore
     public void getByCode(){
 
         Product product1 = new Product();
@@ -86,7 +86,7 @@ public class ProductDaoTest {
         Assert.assertEquals(product1.getCode(),foundProduct.getCode());
     }
 
-    @Test
+    @Test @Ignore
     public void findAll(){
 
         List<Product> products = new ArrayList<Product>();
@@ -128,7 +128,7 @@ public class ProductDaoTest {
         Assert.assertEquals(products,productListCSV);
     }
 
-    @Test
+    @Test @Ignore
     public void Update(){
 
         Product product1 = new Product();

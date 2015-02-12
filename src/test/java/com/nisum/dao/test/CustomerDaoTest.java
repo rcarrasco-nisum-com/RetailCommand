@@ -11,7 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.nisum.dao.CustomerDao;
-import com.nisum.dao.impl.CustomerDaoImpl;
+import com.nisum.dao.impl.CustomerCsvDaoImpl;
 import com.nisum.model.Customer;
 
 public class CustomerDaoTest {
@@ -32,7 +32,7 @@ public class CustomerDaoTest {
 		
 		logger.debug("setUp");
 		
-		dao = new CustomerDaoImpl();
+		dao = new CustomerCsvDaoImpl();
 		
 		list = new ArrayList<Customer>();
 		
@@ -100,7 +100,7 @@ public class CustomerDaoTest {
 	@Test
 	public void testSaveCustomer() {
 		
-		logger.info("testSaveListOfCustomer");
+		logger.info("testSaveCustomer");
 		
 		// call to method
 		dao.save(list);
@@ -246,12 +246,12 @@ public class CustomerDaoTest {
 		customer = dao.get(rafael.getName());
 		
 		check = dao.getAll();
-		Assert.assertEquals(list.size(), check.size());
+		Assert.assertEquals(3, check.size());
 		
 		dao.delete(rafael);
 		
 		check = dao.getAll();
-		Assert.assertEquals(list.size()-1, check.size());
+		Assert.assertEquals(2, check.size());
 		
 		customer = dao.get(rafael.getName());
 		Assert.assertEquals(null, customer);
@@ -259,7 +259,7 @@ public class CustomerDaoTest {
 		dao.delete(roman);
 		
 		check = dao.getAll();
-		Assert.assertEquals(list.size()-2, check.size());
+		Assert.assertEquals(1, check.size());
 		
 		customer = dao.get(rafael.getName());
 		Assert.assertEquals(null, customer);
@@ -270,7 +270,7 @@ public class CustomerDaoTest {
 		dao.delete(pablo);
 		
 		check = dao.getAll();
-		Assert.assertEquals(list.size()-3, check.size());
+		Assert.assertEquals(0, check.size());
 		
 		dao.delete(claudio);
 		

@@ -11,5 +11,6 @@
     </Root>
     <Logger name="com.nisum.app" level="debug" />
     <Logger name="com.nisum.dao" level="info" />
+    <Logger name="com.nisum.controller" level="debug" />
   </Loggers>
 </Configuration>

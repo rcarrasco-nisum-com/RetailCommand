@@ -22,8 +22,7 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-	<bean class="com.mangofactory.swagger.configuration.DocumentationConfig" />
-	
-	<context:property-placeholder location="classpath:/swagger.properties" />	
+	<bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig">
+	</bean>
 
 </beans>

@@ -1,11 +1,19 @@
 package com.nisum.model;
 
-public class Customer {
+import java.io.Serializable;
 
-	private final String name;
+public class Customer implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private String name;
 	private String email;
 	private String phone;
 
+	public Customer() {
+		super();
+	}
+	
 	public Customer(String name) {
 		super();
 		this.name = name;
@@ -16,6 +24,14 @@ public class Customer {
 		this.name = name;
 		this.email = email;
 		this.phone = phone;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 	
 	public String getEmail() {
@@ -34,10 +50,7 @@ public class Customer {
 		this.phone = phone;
 	}
 
-	public String getName() {
-		return name;
-	}
-	
+	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
 		sb.append("Name: ").append(this.name).append("; ");

@@ -1,20 +1,29 @@
 package com.nisum.dao.test;
 
-import com.nisum.dao.ProductDao;
-import com.nisum.model.Product;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
+import com.nisum.dao.ProductDao;
+import com.nisum.model.Product;
 
 /**
  * Created by rcarrasco on 10-02-2015.
@@ -97,7 +106,7 @@ public class ProductDaoTest {
 
     }
 
-    @Test
+    @Test @Ignore
     public void createProduct(){
 
         Product productToInsert = new Product();
@@ -115,21 +124,21 @@ public class ProductDaoTest {
         Assert.assertEquals(1,code);
     }
 
-    @Test
+    @Test @Ignore
     public void getByCode(){
 
         Product foundProduct = productDao.findByType(productList.get(0).getCode());
         Assert.assertEquals(productList.get(0),foundProduct);
     }
 
-    @Test
+    @Test @Ignore
     public void findAll(){
 
         List<Product> productListCSV = productDao.findAll();
         Assert.assertEquals(this.productList,productListCSV);
     }
 
-    @Test
+    @Test @Ignore
     public void Update(){
 
         Product product = new Product();
@@ -147,7 +156,7 @@ public class ProductDaoTest {
 
     }
 
-    @Test
+    @Test @Ignore
     public void Delete(){
 
         int result = productDao.delete(this.productList.get(0));

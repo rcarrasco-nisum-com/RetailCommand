@@ -13,12 +13,10 @@ import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.stereotype.Service;
 
 import com.nisum.dao.CustomerDao;
 import com.nisum.model.Customer;
 
-@Service
 public class CustomerDaoImpl implements CustomerDao {
 
 	public static Logger logger = LogManager.getLogger();
@@ -70,8 +68,14 @@ public class CustomerDaoImpl implements CustomerDao {
 			writer.close();
 
 		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			logger.error(e);
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
+			e.printStackTrace();
+			logger.error(e);
 		}
 
 	}
@@ -102,8 +106,14 @@ public class CustomerDaoImpl implements CustomerDao {
 			writer.close();
 
 		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+			logger.error(e);
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
+			e.printStackTrace();
+			logger.error(e);
 		}
 		
 	}
@@ -125,7 +135,7 @@ public class CustomerDaoImpl implements CustomerDao {
 				logger.debug("line >> " + line);
 				
 				if (!"".equalsIgnoreCase(line.trim())) {
-					String[] array = line.split(",");
+					String[] array = line.split( CSV_SEPARATOR );
 					Customer customer = new Customer(array[0],array[1],array[2]);
 					list.add(customer);
 				}
@@ -135,7 +145,11 @@ public class CustomerDaoImpl implements CustomerDao {
 			reader.close();
 			
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
+			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		return list;
@@ -165,7 +179,11 @@ public class CustomerDaoImpl implements CustomerDao {
 			reader.close();
 			
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
+			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		return customer;
@@ -204,7 +222,11 @@ public class CustomerDaoImpl implements CustomerDao {
 			reader.close();
 			
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
+			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		save(list);
@@ -239,7 +261,11 @@ public class CustomerDaoImpl implements CustomerDao {
 			reader.close();
 			
 		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+			logger.error(e);
 		} catch (IOException e) {
+			e.printStackTrace();
+			logger.error(e);
 		}
 		
 		save(list);
