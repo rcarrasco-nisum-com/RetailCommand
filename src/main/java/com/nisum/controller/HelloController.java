@@ -32,6 +32,16 @@ public class HelloController {
 
 		model.addAttribute("message", "Hello world!");
         List<Product> productListCSV = productDao.findAll();
+
+        Product product = new Product();
+
+        product.setCode("1");
+        product.setCountry("chile");
+        product.setPrice(100);
+        product.setSize("S");
+        product.setType("shirt");
+
+        productDao.delete(product);
 		return "hello";
 	}
 
