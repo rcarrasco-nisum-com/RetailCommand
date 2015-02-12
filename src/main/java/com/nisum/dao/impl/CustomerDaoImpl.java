@@ -25,7 +25,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	
 	public static final String CSV_SEPARATOR = ",";
 	
-	public static final String CSV_FILE = "/work/workspace/RetailCommand/customer.csv";
+	public static final String CSV_FILE = "/tmp/customer.csv";
 	
 	public static final String CSV_ENCODING = "UTF-8";
 	

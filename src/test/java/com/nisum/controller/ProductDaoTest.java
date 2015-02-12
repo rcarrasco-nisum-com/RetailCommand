@@ -82,7 +82,8 @@ public class ProductDaoTest {
         product1.setType("shirt");
 
         Product foundProduct = productDao.findByType(product1.getCode());
-        Assert.assertEquals(product1,foundProduct);
+        
+        Assert.assertEquals(product1.getCode(),foundProduct.getCode());
     }
 
     @Test

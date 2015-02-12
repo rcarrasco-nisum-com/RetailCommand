@@ -41,6 +41,8 @@
                 docExpansion: "none"
             });
 
+	    	window.authorizations.add("Accept", new ApiKeyAuthorization("Accept", "application/json", "header"));
+	    	
             window.swaggerUi.load();
         });
 

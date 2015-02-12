@@ -1,13 +1,20 @@
 package com.nisum.dao.impl;
 
-import com.nisum.dao.ProductDao;
-import com.nisum.model.Customer;
-import com.nisum.model.Product;
-import org.springframework.stereotype.Repository;
-
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.nisum.dao.ProductDao;
+import com.nisum.model.Product;
 
 /**
  * Created by rcarrasco on 09-02-2015.
@@ -21,7 +28,7 @@ public class ProductDaoCSVImpl implements ProductDao{
     @Override
     public List<Product> findAll() {
 
-        String csvFile = "C:\\Projects\\Onboarding\\RetailCommand\\customers.csv";
+        String csvFile = "/tmp/products.csv";
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
@@ -65,7 +72,7 @@ public class ProductDaoCSVImpl implements ProductDao{
     @Override
     public Product findByType(String type) {
 
-        String csvFile = "C:\\Projects\\Onboarding\\RetailCommand\\customers.csv";
+        String csvFile = "/tmp/products.csv";
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
@@ -116,7 +123,7 @@ public class ProductDaoCSVImpl implements ProductDao{
 
         try {
 
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C:\\Projects\\Onboarding\\RetailCommand\\customers.csv", false), "UTF-8"));
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("/tmp/products.csv", false), "UTF-8"));
 
             for (Product product : products) {
 
@@ -152,7 +159,7 @@ public class ProductDaoCSVImpl implements ProductDao{
 
         try {
 
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C:\\Projects\\Onboarding\\RetailCommand\\customers.csv", false), "UTF-8"));
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("/tmp/products.csv", false), "UTF-8"));
 
                 StringBuffer line = new StringBuffer();
 
