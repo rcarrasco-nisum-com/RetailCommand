@@ -226,7 +226,7 @@ public class CustomerCsvDaoImpl implements CustomerDao {
 					String email = record.get(FILE_HEADER_MAPPING[1]);
 					String phone = record.get(FILE_HEADER_MAPPING[2]);
 					
-					customer = new Customer(name, email, phone);
+					aux = new Customer(name, email, phone);
 				}
 				
 				list.add(aux);
