@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -24,24 +26,33 @@ import com.wordnik.swagger.annotations.Api;
 @Api(value = "customer", description = "customer front-end!")
 public class CustomerController {
 
+	public static final Logger logger = LogManager.getLogger();
+	
 	@Autowired
 	CustomerService customerService;
 	
-	@RequestMapping(value = "/get/all", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public List<Customer> getAll() {
 		// ...
 		return customerService.getAll();
 	}
 	
-	@RequestMapping(value = "/get/{name}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "/{name}", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public Customer get(@PathVariable("name") String name) {
 		// ...
 		return customerService.get(name);
 	}
+
+	// @RequestMapping(value = "/test", method = RequestMethod.POST)
+	// @ResponseStatus(HttpStatus.CREATED)
+	// public void test(@RequestBody Customer customer) {
+	// // ...
+	// logger.debug(customer);
+	// }
 	
-	@RequestMapping(value = "/create", method = RequestMethod.POST, headers ="Content-Type=application/json")
+	@RequestMapping(value = "", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
 	public void create(@RequestBody Customer customer, HttpServletResponse response) {
 		// ...
@@ -52,14 +63,14 @@ public class CustomerController {
 		response.setHeader("Location",location);	
 	}
 	
-	@RequestMapping(value = "/update/{name}", method = RequestMethod.PUT, headers ="Content-Type=application/json")
+	@RequestMapping(value = "/{name}", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void update(@PathVariable String name, @RequestBody Customer customer) {
 		// ...
 		customerService.update(customer);
 	}
 	
-	@RequestMapping(value="/delete/{name}", method=RequestMethod.DELETE)
+	@RequestMapping(value="/{name}", method=RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("name")String name){
 		// ...

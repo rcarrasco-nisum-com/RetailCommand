@@ -14,15 +14,15 @@
     <context:component-scan base-package="com.nisum.model"/>
     <context:component-scan base-package="com.nisum.service"/>
 	
-	<mvc:resources location="classpath:*swagger-ui/" mapping="/swagger-ui/**" />
+	<mvc:resources location="/swagger-ui/" mapping="/swagger-ui/**" />
 
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
-	<bean class="com.mangofactory.swagger.configuration.DocumentationConfig" />
+	<bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig">
+	</bean>
 
-    <context:property-placeholder location="classpath:swagger.properties" />
 
 </beans>
