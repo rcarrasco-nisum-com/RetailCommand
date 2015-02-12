@@ -6,24 +6,23 @@
         http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:annotation-config />
-
+	<context:annotation-config/>
 	<mvc:annotation-driven />
-	
-	<mvc:resources location="classpath:/swagger-ui/" mapping="/swagger-ui/**" />
-	
+
     <context:component-scan base-package="com.nisum.controller"/>
     <context:component-scan base-package="com.nisum.dao"/>
     <context:component-scan base-package="com.nisum.model"/>
     <context:component-scan base-package="com.nisum.service"/>
 	
+	<mvc:resources location="classpath:*swagger-ui/" mapping="/swagger-ui/**" />
+
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
 
 	<bean class="com.mangofactory.swagger.configuration.DocumentationConfig" />
-	
-	<context:property-placeholder location="classpath:/swagger.properties" />	
+
+    <context:property-placeholder location="classpath:swagger.properties" />
 
 </beans>

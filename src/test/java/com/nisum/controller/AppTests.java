@@ -1,5 +1,8 @@
 package com.nisum.controller;
 
+import com.nisum.dao.impl.CustomerDaoImpl;
+import com.nisum.dao.impl.ProductDaoCSVImpl;
+import com.nisum.model.Product;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -34,6 +37,17 @@ public class AppTests {
     @Test
     @Ignore
     public void simple() throws Exception {
+
+        Product product = new Product();
+        product.setCode("1");
+        product.setCountry("Marte");
+        product.setPrice(5000.0);
+        product.setSize("XXL");
+        product.setType("spacesuit");
+
+        ProductDaoCSVImpl productDaoCSVImpl = new ProductDaoCSVImpl();
+        int result = productDaoCSVImpl.update(product);
+
         mockMvc.perform(get("/"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("hello"));

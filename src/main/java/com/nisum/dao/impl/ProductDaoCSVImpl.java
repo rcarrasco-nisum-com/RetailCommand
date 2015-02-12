@@ -24,11 +24,12 @@ import com.nisum.model.Product;
 public class ProductDaoCSVImpl implements ProductDao{
 
     public static final String CSV_SEPARATOR = ",";
+    private static final String path = "/tmp/products.csv";
 
     @Override
     public List<Product> findAll() {
 
-        String csvFile = "/tmp/products.csv";
+        String csvFile = path;
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
@@ -72,7 +73,7 @@ public class ProductDaoCSVImpl implements ProductDao{
     @Override
     public Product findByType(String type) {
 
-        String csvFile = "/tmp/products.csv";
+        String csvFile = path;
         BufferedReader br = null;
         String line = "";
         String cvsSplitBy = ",";
@@ -117,7 +118,7 @@ public class ProductDaoCSVImpl implements ProductDao{
     public int create(List<Product> products) {
 
         try {
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("/tmp/products.csv", false), "UTF-8"));
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, false), "UTF-8"));
             for (Product product : products) {
                 StringBuffer line = new StringBuffer();
                 line.append(product.getCode());
@@ -146,7 +147,7 @@ public class ProductDaoCSVImpl implements ProductDao{
     public int create(Product product) {
 
         try {
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("/tmp/products.csv", true), "UTF-8"));
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, true), "UTF-8"));
                 StringBuffer line = new StringBuffer();
 
                 line.append(product.getCode());
@@ -175,17 +176,16 @@ public class ProductDaoCSVImpl implements ProductDao{
 
         List<Product> list = new ArrayList<Product>();
         BufferedReader reader = null;
+        String line = "";
+        Product aux = null;
+        String[] array = new String[0];
 
         try {
-            reader = new BufferedReader(new FileReader("/tmp/products.csv"));
-            String line = null;
-            Product aux = null;
-
+            reader = new BufferedReader(new FileReader(path));
             while ((line = reader.readLine()) != null) {
-
                 if (! "".equalsIgnoreCase(line.trim())) {
 
-                    String[] array = line.split(",");
+                    array = line.split(",");
                     if (array[0].equalsIgnoreCase(product.getCode())) {
                         aux = product;
                     }
@@ -193,43 +193,13 @@ public class ProductDaoCSVImpl implements ProductDao{
                         aux = new Product(array[0],array[1],Double.parseDouble(array[2]),array[3],array[4]);
                     }
                     list.add(aux);
-                }
-
-            reader.close();
-
             }
-            
+        }
+            reader.close();
         } catch (FileNotFoundException e) { return 0;}
         catch (IOException e) { return 0;}
 
-        BufferedWriter writer = null;
-
-        try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("/tmp/products.csv", true), "UTF-8"));
-
-            for (Product prod : list) {
-
-                StringBuffer line = new StringBuffer();
-                line.append(prod.getCode());
-                line.append(CSV_SEPARATOR);
-                line.append(prod.getCountry());
-                line.append(CSV_SEPARATOR);
-                line.append(prod.getPrice());
-                line.append(CSV_SEPARATOR);
-                line.append(prod.getSize());
-                line.append(CSV_SEPARATOR);
-                line.append(prod.getType());
-
-                writer.write(line.toString());
-                writer.newLine();
-            }
-            writer.flush();
-            writer.close();
-
-        } catch (UnsupportedEncodingException e) {return 0;}
-          catch (FileNotFoundException e) {return 0;}
-          catch (IOException e) {return 0;}
-
+        create(list);
         return 1;
     }
 
@@ -241,7 +211,7 @@ public class ProductDaoCSVImpl implements ProductDao{
 
         try {
 
-            reader = new BufferedReader(new FileReader("/tmp/products.csv"));
+            reader = new BufferedReader(new FileReader(path));
             String line = null;
 
             while ((line = reader.readLine()) != null) {

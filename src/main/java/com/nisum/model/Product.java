@@ -11,11 +11,15 @@ public class Product {
     private String size;
     private String country;
 
-    public Product(String code, String type, Double price, String size, String country) {
+    public Product(String code, String type, double price, String size, String country) {
+        this.code = code;
+        this.type = type;
+        this.price = price;
+        this.size = size;
+        this.country = country;
     }
 
     public Product() {
-
     }
 
     public String getCode() {

@@ -6,12 +6,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.*;
 import org.junit.runner.RunWith;
-import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +23,7 @@ import java.util.List;
 public class ProductDaoTest {
 
     public static Logger logger = LogManager.getLogger();
+    private static final String path = "/tmp/products.csv";
 
     @Qualifier("productDaoCSVImpl")
     @Autowired
@@ -69,7 +68,7 @@ public class ProductDaoTest {
         this.productList.add(product4);
 
         try {
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("C:\\Projects\\Onboarding\\RetailCommand\\customers.csv", false), "UTF-8"));
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path, false), "UTF-8"));
             for (Product product : productList) {
                 StringBuffer line = new StringBuffer();
                 line.append(product.getCode());

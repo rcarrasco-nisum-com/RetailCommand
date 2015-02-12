@@ -50,7 +50,6 @@ public class HelloController {
     public @ResponseBody
     String getParamTypesActiveList() throws IOException {
 
-
         List<Product> productList = new ArrayList<Product>();
         Product product1 = new Product();
         Product product2 = new Product();
@@ -84,10 +83,6 @@ public class HelloController {
         product4.setSize("L");
         product4.setType("hat");
         productList.add(product4);
-/*        ParameterTypeJson parameterTypeJson = new ParameterTypeJson();
-        parameterTypeJson.setiTotalDisplayRecords(parameterTypeTO.size());
-        parameterTypeJson.setiTotalRecords(parameterTypeTO.size());
-        parameterTypeJson.setAaData(parameterTypeTO); */
 
         Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
         return gson.toJson(productList);
