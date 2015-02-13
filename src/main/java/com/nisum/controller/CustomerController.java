@@ -63,9 +63,9 @@ public class CustomerController {
 		response.setHeader("Location",location);	
 	}
 	
-	@RequestMapping(value = "/{name}", method = RequestMethod.PUT)
+	@RequestMapping(value = "", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void update(@PathVariable String name, @RequestBody Customer customer) {
+	public void update(@RequestBody Customer customer) {
 		// ...
 		customerService.update(customer);
 	}
@@ -74,7 +74,10 @@ public class CustomerController {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("name")String name){
 		// ...
-		customerService.delete(customerService.get(name));
+		Customer customer = customerService.get(name);
+		if (customer != null) {
+			customerService.delete(customerService.get(name));
+		}
 	}
 	
 }

@@ -6,11 +6,11 @@
     </Console>
   </Appenders>
   <Loggers>
-    <Root level="error">
-      <AppenderRef ref="Console"/>
-    </Root>
     <Logger name="com.nisum.app" level="debug" />
     <Logger name="com.nisum.dao" level="info" />
     <Logger name="com.nisum.controller" level="debug" />
+    <Root level="error">
+      <AppenderRef ref="Console"/>
+    </Root>
   </Loggers>
 </Configuration>

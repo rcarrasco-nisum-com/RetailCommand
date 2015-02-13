@@ -16,11 +16,6 @@ public class CustomerServiceImpl implements CustomerService {
 	CustomerDao dao;
 	
 	@Override
-	public void save(List<Customer> list) {
-		dao.save(list);
-	}
-
-	@Override
 	public void save(Customer customer) {
 		dao.save(customer);
 	}
@@ -43,6 +38,11 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public void delete(Customer customer) {
 		dao.delete(customer);
+	}
+
+	@Override
+	public void save(List<Customer> list) {
+		dao.save(list);
 	}
 
 }

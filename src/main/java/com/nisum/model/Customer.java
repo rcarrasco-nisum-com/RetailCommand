@@ -2,7 +2,7 @@ package com.nisum.model;
 
 import java.io.Serializable;
 
-public class Customer implements Serializable {
+public class Customer implements Serializable, Comparable<Customer> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -58,4 +58,29 @@ public class Customer implements Serializable {
 		sb.append("Phone: ").append(this.phone).append(";");
 		return sb.toString();
 	}
+
+	@Override
+	public int compareTo(Customer o) {
+		
+		// ...
+		return this.getName().compareTo(o.getName());
+	}
+	
+	@Override
+	public boolean equals(Object o) {
+		
+		// ...
+		if ((o != null) && (o instanceof Customer) && (this.getName().equalsIgnoreCase(((Customer) o).getName())))
+			return true;
+		else
+			return false;
+	}
+	
+    @Override
+    public int hashCode() {
+    	
+        // ...
+    	return name.hashCode()+email.hashCode()+phone.hashCode();
+    }
+	
 }

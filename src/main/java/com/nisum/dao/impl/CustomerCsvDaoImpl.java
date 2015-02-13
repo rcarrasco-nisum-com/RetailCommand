@@ -5,7 +5,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
@@ -25,14 +27,31 @@ public class CustomerCsvDaoImpl implements CustomerDao {
 	
 	// Delimiter used in CSV file
 	private static final String NEW_LINE_SEPARATOR = "\n";
+
+	private static final String NAME = "name";
+	private static final String EMAIL = "email";
+	private static final String PHONE = "phone";
 	
 	// CSV file header
-	private static final Object[] FILE_HEADER = { "name", "email", "phone" };
-
-	//CSV file header
-    private static final String [] FILE_HEADER_MAPPING = { "name", "email", "phone" };
+    private static final String [] FILE_HEADER = { NAME, EMAIL, PHONE };
 	
+    // CSV file (path + name)
 	public static final String FILE = "/tmp/customers.csv";
+
+	// private final String fileName;
+	//
+	// public CustomerCsvDaoImpl(String fileName) {
+	// super();
+	// this.fileName = fileName;
+	// }
+	
+	private FileWriter getWriter(boolean append) throws IOException {
+		return new FileWriter(FILE, append);
+	}
+	
+	private FileReader getReader() throws FileNotFoundException {
+		return new FileReader(FILE);
+	}
 	
 	@Override
 	public void save(Customer customer) {
@@ -45,7 +64,7 @@ public class CustomerCsvDaoImpl implements CustomerDao {
 
 		try {
 			
-			fileWriter = new FileWriter(FILE, true);
+			fileWriter = getWriter(true);
 			csvFilePrinter = new CSVPrinter(fileWriter, csvFileFormat);
 			
 			List<String> data = new ArrayList<String>();
@@ -60,8 +79,8 @@ public class CustomerCsvDaoImpl implements CustomerDao {
 			csvFilePrinter.close();
 			
 		} catch (IOException e) {
+			logger.error("can't open the file --> " + e);
 			e.printStackTrace();
-			logger.error(e);
 		}
 
 	}
@@ -77,9 +96,9 @@ public class CustomerCsvDaoImpl implements CustomerDao {
 
 		try {
 			
-			fileWriter = new FileWriter(FILE, false);
+			fileWriter = getWriter(false);
 			csvFilePrinter = new CSVPrinter(fileWriter, csvFileFormat);
-			csvFilePrinter.printRecord(FILE_HEADER);
+			csvFilePrinter.printRecord((Object[])FILE_HEADER);
 			
 			for (Customer customer : list) {
 				
@@ -96,8 +115,8 @@ public class CustomerCsvDaoImpl implements CustomerDao {
 			csvFilePrinter.close();
 			
 		} catch (IOException e) {
+			logger.error("can't open the file --> " + e);
 			e.printStackTrace();
-			logger.error(e);
 		}
 
 	}
@@ -109,23 +128,28 @@ public class CustomerCsvDaoImpl implements CustomerDao {
 		
 		FileReader fileReader = null;
 		CSVParser csvFileParser = null;
-		CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader(FILE_HEADER_MAPPING);
+		CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader(FILE_HEADER);
 
 		List<Customer> list = new ArrayList<Customer>();
 		
 		try {
 			
-			fileReader = new FileReader(FILE);
+			fileReader = getReader();
 			csvFileParser = new CSVParser(fileReader, csvFileFormat);
 			List<CSVRecord> records = csvFileParser.getRecords();
 			
-			for (int i = 1; i < records.size(); i++) {
+			Iterator<CSVRecord> iterator = records.iterator();
+			
+			// ignore the first element, is the HEADER
+			iterator.next();
+			
+			for (; iterator.hasNext();) {
 				
-				CSVRecord record = records.get(i);
+				CSVRecord record = (CSVRecord) iterator.next();
 				
-				String name = record.get(FILE_HEADER_MAPPING[0]);
-				String email = record.get(FILE_HEADER_MAPPING[1]);
-				String phone = record.get(FILE_HEADER_MAPPING[2]);
+				String name = record.get(NAME);
+				String email = record.get(EMAIL);
+				String phone = record.get(PHONE);
 				
 				Customer customer = new Customer(name, email, phone);
 				
@@ -136,11 +160,12 @@ public class CustomerCsvDaoImpl implements CustomerDao {
 			csvFileParser.close();
 			
 		} catch (FileNotFoundException e) {
+			logger.error("file not found --> " + e);
 			e.printStackTrace();
-			logger.error(e);
+			
 		} catch (IOException e) {
+			logger.error("can't open the file --> " + e);
 			e.printStackTrace();
-			logger.error(e);
 		}
 		
 		return list;
@@ -150,46 +175,20 @@ public class CustomerCsvDaoImpl implements CustomerDao {
 	public Customer get(String name) {
 
 		logger.debug("get customer by name");
-		
-		FileReader fileReader = null;
-		CSVParser csvFileParser = null;
-		CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader(FILE_HEADER_MAPPING);
+
+		if (name == null)
+			return null;
 
 		Customer customer = null;
-		
-		try {
-			
-			fileReader = new FileReader(FILE);
-			csvFileParser = new CSVParser(fileReader, csvFileFormat);
-			List<CSVRecord> records = csvFileParser.getRecords();
-			
-			for (int i = 1; i < records.size(); i++) {
-				
-				CSVRecord record = records.get(i);
-				
-				if (name.trim().equalsIgnoreCase( record.get(FILE_HEADER_MAPPING[0]).trim() )) {
-					
-					name = record.get(FILE_HEADER_MAPPING[0]);
-					String email = record.get(FILE_HEADER_MAPPING[1]);
-					String phone = record.get(FILE_HEADER_MAPPING[2]);
-					
-					customer = new Customer(name, email, phone);
-					break;
-				}
-				
+		List<Customer> list = getAll();
+
+		for (Customer element : list) {
+			if (name.equalsIgnoreCase(element.getName())) {
+				customer = element;
+				break;
 			}
-			
-			fileReader.close();
-			csvFileParser.close();
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			logger.error(e);
-		} catch (IOException e) {
-			e.printStackTrace();
-			logger.error(e);
 		}
-		
+
 		return customer;
 	}
 
@@ -197,104 +196,30 @@ public class CustomerCsvDaoImpl implements CustomerDao {
 	public void update(Customer customer) {
 
 		logger.debug("update a customer");
-		
-		FileReader fileReader = null;
-		CSVParser csvFileParser = null;
-		CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader(FILE_HEADER_MAPPING);
 
-		List<Customer> list = new ArrayList<Customer>();
-		Customer aux = null;
-		
-		try {
-			
-			fileReader = new FileReader(FILE);
-			csvFileParser = new CSVParser(fileReader, csvFileFormat);
-			List<CSVRecord> records = csvFileParser.getRecords();
-			
-			for (int i = 1; i < records.size(); i++) {
-				
-				CSVRecord record = records.get(i);
-				
-				if (customer.getName().trim().equalsIgnoreCase( record.get(FILE_HEADER_MAPPING[0]).trim() )) {
-					
-					aux = customer;
-					
-				}
-				else {
-					
-					String name = record.get(FILE_HEADER_MAPPING[0]);
-					String email = record.get(FILE_HEADER_MAPPING[1]);
-					String phone = record.get(FILE_HEADER_MAPPING[2]);
-					
-					aux = new Customer(name, email, phone);
-				}
-				
-				list.add(aux);
+		List<Customer> list = getAll();
+		ListIterator<Customer> iterator = list.listIterator();
+
+		while (iterator.hasNext()) {
+			Customer aux = (Customer) iterator.next();
+			if (aux.equals(customer)) {
+				iterator.remove();
+				iterator.add(customer);
 			}
-			
-			fileReader.close();
-			csvFileParser.close();
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			logger.error(e);
-		} catch (IOException e) {
-			e.printStackTrace();
-			logger.error(e);
 		}
-		
+
 		save(list);
-		
 	}
 
 	@Override
 	public void delete(Customer customer) {
 
 		logger.debug("delete a customer");
-		
-		FileReader fileReader = null;
-		CSVParser csvFileParser = null;
-		CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader(FILE_HEADER_MAPPING);
 
-		List<Customer> list = new ArrayList<Customer>();
-		
-		try {
-			
-			fileReader = new FileReader(FILE);
-			csvFileParser = new CSVParser(fileReader, csvFileFormat);
-			List<CSVRecord> records = csvFileParser.getRecords();
-			
-			Customer aux = null;
-			
-			for (int i = 1; i < records.size(); i++) {
-				
-				CSVRecord record = records.get(i);
-				
-				if (!customer.getName().trim().equalsIgnoreCase( record.get(FILE_HEADER_MAPPING[0]).trim() )) {
-					
-					String name = record.get(FILE_HEADER_MAPPING[0]);
-					String email = record.get(FILE_HEADER_MAPPING[1]);
-					String phone = record.get(FILE_HEADER_MAPPING[2]);
-					
-					aux = new Customer(name, email, phone);
-					list.add(aux);
-				}
-								
-			}
-			
-			fileReader.close();
-			csvFileParser.close();
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			logger.error(e);
-		} catch (IOException e) {
-			e.printStackTrace();
-			logger.error(e);
-		}
+		List<Customer> list = getAll();
+		list.remove(customer);
 		
 		save(list);
-		
 	}
 
 }

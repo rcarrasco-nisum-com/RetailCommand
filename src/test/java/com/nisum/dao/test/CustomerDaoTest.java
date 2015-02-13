@@ -32,6 +32,8 @@ public class CustomerDaoTest {
 		
 		logger.debug("setUp");
 		
+		// String fileName = "/tmp/customers.csv";
+		// dao = new CustomerCsvDaoImpl(fileName);
 		dao = new CustomerCsvDaoImpl();
 		
 		list = new ArrayList<Customer>();
@@ -243,6 +245,10 @@ public class CustomerDaoTest {
 		
 		dao.save(list);
 		
+		dao.delete(claudio);
+		check = dao.getAll();
+		Assert.assertEquals(list.size(), check.size());
+		
 		customer = dao.get(rafael.getName());
 		
 		check = dao.getAll();
@@ -268,12 +274,14 @@ public class CustomerDaoTest {
 		Assert.assertEquals(pablo.getEmail(), customer.getEmail());
 		
 		dao.delete(pablo);
-		
 		check = dao.getAll();
 		Assert.assertEquals(0, check.size());
 		
 		dao.delete(claudio);
+		check = dao.getAll();
+		Assert.assertEquals(0, check.size());
 		
+		dao.delete(pablo);
 		check = dao.getAll();
 		Assert.assertEquals(0, check.size());
 		
