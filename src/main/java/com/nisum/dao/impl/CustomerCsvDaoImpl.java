@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -38,7 +39,7 @@ public class CustomerCsvDaoImpl implements CustomerDao {
     // CSV file (path + name)
 	public static final String FILE = "/tmp/customers.csv";
 
-	// private final String fileName;
+	// private String fileName;
 	//
 	// public CustomerCsvDaoImpl(String fileName) {
 	// super();
@@ -58,7 +59,9 @@ public class CustomerCsvDaoImpl implements CustomerDao {
 
 		logger.debug("CSV save customer");
 		
-		FileWriter fileWriter = null;
+		// FileWriter fileWriter = null;
+		Writer fileWriter = null;
+		
 		CSVPrinter csvFilePrinter = null;
 		CSVFormat csvFileFormat = CSVFormat.DEFAULT.withRecordSeparator(NEW_LINE_SEPARATOR);
 

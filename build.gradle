@@ -29,3 +29,9 @@ dependencies {
     compile "commons-cli:commons-cli:1.2"
 }
 
+task path {
+	sourceSets.all {
+		println java.srcDirs
+		println resources.srcDirs
+	}
+}

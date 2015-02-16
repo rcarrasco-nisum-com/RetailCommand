@@ -1,8 +1,10 @@
 package com.nisum.controller;
 
-import com.nisum.dao.impl.CustomerDaoImpl;
-import com.nisum.dao.impl.ProductDaoCSVImpl;
-import com.nisum.model.Product;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -14,10 +16,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.context.WebApplicationContext;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.webAppContextSetup;
+import com.nisum.dao.impl.ProductDaoCSVImpl;
+import com.nisum.model.Product;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
