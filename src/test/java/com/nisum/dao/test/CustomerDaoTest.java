@@ -16,7 +16,7 @@ import com.nisum.model.Customer;
 
 public class CustomerDaoTest {
 
-	public static Logger logger = LogManager.getLogger();
+	private static Logger logger = LogManager.getLogger();
 	
 	public CustomerDao dao;
 	

@@ -7,12 +7,14 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:annotation-config/>
+	
 	<mvc:annotation-driven />
 
     <context:component-scan base-package="com.nisum.controller"/>
     <context:component-scan base-package="com.nisum.dao"/>
     <context:component-scan base-package="com.nisum.model"/>
     <context:component-scan base-package="com.nisum.service"/>
+    <context:component-scan base-package="com.nisum.app"/>
 	
 	<mvc:resources location="/swagger-ui/" mapping="/swagger-ui/**" />
 

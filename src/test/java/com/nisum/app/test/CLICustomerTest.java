@@ -13,11 +13,10 @@ import org.springframework.test.context.ContextConfiguration;
 
 import com.nisum.app.CLICustomer;
 
-// RunWith(value = SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring-app-config.xml")
 public class CLICustomerTest {
 
-	public static Logger logger = LogManager.getLogger();
+	private static Logger logger = LogManager.getLogger();
 	
 	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
 	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();

@@ -33,7 +33,7 @@ import com.nisum.model.Product;
 @ContextConfiguration("file:src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml")
 public class ProductDaoTest {
 
-    public static Logger logger = LogManager.getLogger();
+    private static Logger logger = LogManager.getLogger();
     private static final String path = "/tmp/products.csv";
 
     @Qualifier("productDaoCSVImpl")
