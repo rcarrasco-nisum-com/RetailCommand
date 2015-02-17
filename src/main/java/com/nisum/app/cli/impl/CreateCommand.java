@@ -19,13 +19,18 @@ public class CreateCommand implements CLICommand {
 	private static Logger logger = LogManager.getLogger();
 	
 	@Autowired
-	public CustomerService service;
+	private CustomerService service;
 	
 	@Override
 	public void execute(Properties props) {
 		
 		logger.debug(props);
 		
+		if (props == null) {
+			System.out.println("props [-D] is missing");
+			return;
+		}
+			
 		String name = props.getProperty("name");
 		// logger.debug(name);
 		String email = props.getProperty("email");
@@ -33,17 +38,26 @@ public class CreateCommand implements CLICommand {
 		String phone = props.getProperty("phone");
 		// logger.debug(phone);
 		
-		if (name == null) 
-			logger.error("-D name=<name> is missing");
-		if (email == null)
-			logger.error("-D email=<email> is missing");
-		if (phone == null)
-			logger.error("-D phone=<phone> is missing");
+		if (name == null || name.trim().equalsIgnoreCase("")) {
+			System.out.println("-D name=<name> is missing");
+			return;
+		}
+		if (email == null || email.trim().equalsIgnoreCase("")) {
+			System.out.println("-D email=<email> is missing");
+			return;
+		}
+		if (phone == null || phone.trim().equalsIgnoreCase("")) {
+			System.out.println("-D phone=<phone> is missing");
+			return;
+		}
 		
 		Customer customer = service.get(name);
+		// logger.debug(customer);
 		
 		if (customer != null) {
 
+			logger.debug("updating " + customer.toString());
+			
 			customer.setEmail(email);
 			customer.setPhone(phone);
 			service.update(customer);
@@ -53,12 +67,13 @@ public class CreateCommand implements CLICommand {
 		} else {
 			
 			customer = new Customer(name, email, phone);
+			logger.debug("creating " + customer);
+			
 			service.save(customer);
 			
 			System.out.println("new customer --> " + customer.toString());
 			
 		}
-	
 	}
 
 	@Override
@@ -71,6 +86,14 @@ public class CreateCommand implements CLICommand {
 		OptionBuilder.withLongOpt("create");
 		
 		return OptionBuilder.create("C");
+	}
+
+	public CustomerService getService() {
+		return service;
+	}
+
+	public void setService(CustomerService service) {
+		this.service = service;
 	}
 
 }

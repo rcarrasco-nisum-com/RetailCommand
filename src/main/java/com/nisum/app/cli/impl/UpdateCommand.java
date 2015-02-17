@@ -26,6 +26,11 @@ public class UpdateCommand implements CLICommand {
 		
 		logger.debug(props);
 		
+		if (props == null) {
+			System.out.println("props [-D] is missing");
+			return;
+		}
+		
 		String name = props.getProperty("name");
 		// logger.debug(name);
 		String email = props.getProperty("email");
@@ -33,18 +38,18 @@ public class UpdateCommand implements CLICommand {
 		String phone = props.getProperty("phone");
 		// logger.debug(phone);
 		
-		if (name == null) {
-			logger.error("-D name=<name> is missing");
+		if (name == null || name.trim().equalsIgnoreCase("")) {
+			System.out.println("-D name=<name> is missing");
 			return;
 		}
 		
-		if (email == null) {
-			logger.error("-D email=<email> is missing");
+		if (email == null || email.trim().equalsIgnoreCase("")) {
+			System.out.println("-D email=<email> is missing");
 			return;
 		}
 			
-		if (phone == null) {
-			logger.error("-D phone=<phone> is missing");
+		if (phone == null || phone.trim().equalsIgnoreCase("")) {
+			System.out.println("-D phone=<phone> is missing");
 			return;
 		}
 		

@@ -23,14 +23,18 @@ public class CLICustomerTest {
 	
 	@Before
 	public void setUp() throws Exception {
+		
 		System.setOut(new PrintStream(outContent));
 	    System.setErr(new PrintStream(errContent));
+	    
 	}
 
 	@After
 	public void tearDown() throws Exception {
+		
 		System.setOut(null);
 	    System.setErr(null);
+	    
 	}
 	
 	@Test

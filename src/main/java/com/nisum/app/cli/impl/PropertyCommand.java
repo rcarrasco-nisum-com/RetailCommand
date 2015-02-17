@@ -4,8 +4,6 @@ import java.util.Properties;
 
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionBuilder;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import com.nisum.app.cli.CLICommand;
@@ -13,7 +11,7 @@ import com.nisum.app.cli.CLICommand;
 @Component
 public class PropertyCommand implements CLICommand {
 
-	private static Logger logger = LogManager.getLogger();
+	// private static Logger logger = LogManager.getLogger();
 	
 	@Override
 	public void execute(Properties props) {

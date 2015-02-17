@@ -19,6 +19,7 @@ public class HelpCommand implements CLICommand {
 	public void execute(Properties props) {
 
 		logger.debug("HelpCommand.execute()");
+		
 	}
 
 	@Override

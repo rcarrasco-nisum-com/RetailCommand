@@ -58,7 +58,7 @@ public class CLICustomer {
 		
 	}
 
-	public void run(ApplicationContext applicationContext, String[] args) {
+	private void run(ApplicationContext applicationContext, String[] args) {
 
 		// for (String arg : args)
 		// System.out.println("arg --> " + arg);
@@ -98,12 +98,8 @@ public class CLICustomer {
 		} catch (ParseException e) {
 			e.printStackTrace();
 			logger.error(e);
-		} finally {
-
-			// ...
 		}
 
-		
 	}
 
 }

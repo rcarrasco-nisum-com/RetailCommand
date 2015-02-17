@@ -26,10 +26,15 @@ public class DeleteCommand implements CLICommand {
 		
 		logger.debug(props);
 		
+		if (props == null) {
+			System.out.println("props [-D] is missing");
+			return;
+		}
+		
 		String name = props.getProperty("name");
 		
-		if (name == null) {
-			logger.error("-D name=<name> is missing");
+		if (name == null || name.trim().equalsIgnoreCase("")) {
+			System.out.println("-D name=<name> is missing");
 			return;
 		}
 			
@@ -38,7 +43,7 @@ public class DeleteCommand implements CLICommand {
 		if (customer != null) {
 			
 			service.delete(customer);
-			System.out.printf("deleted customer --> %S", customer.toString());
+			System.out.printf("deleted customer --> %s", customer.toString());
 		}
 		else {
 			
