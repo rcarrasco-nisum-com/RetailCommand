@@ -3,6 +3,7 @@ package com.nisum.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.nisum.dao.CustomerDao;
@@ -12,7 +13,8 @@ import com.nisum.service.CustomerService;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-	@Autowired
+	@Autowired 
+	@Qualifier("customerMyBatisDaoImpl")
 	CustomerDao dao;
 	
 	@Override

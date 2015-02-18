@@ -2,27 +2,18 @@ package com.nisum.app.test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.util.Arrays;
-import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.context.ApplicationContext;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.util.ReflectionTestUtils;
 
 import com.nisum.app.CLICustomer;
-import com.nisum.app.cli.CLICommand;
-import com.nisum.app.cli.impl.GetAllCommand;
 import com.nisum.model.Customer;
 import com.nisum.service.CustomerService;
 
@@ -44,7 +35,7 @@ public class CLICustomerMockTest {
 	private final Customer rafael = new Customer("Carrasco, Rafael", "rcarrasco@nisum.com", "+56 9 87654321");
 	private final Customer roman = new Customer("Steiner, Roman", "rsteiner@nisum.com", "+56 9 67891234");
 
-	private final List<Customer> full = Arrays.asList(pablo, rafael, roman);
+	// private final List<Customer> full = Arrays.asList(pablo, rafael, roman);
 	
 	// Mock
 	// private ApplicationContext applicationContext;
@@ -85,7 +76,7 @@ public class CLICustomerMockTest {
 		
 	}
 
-	@Test
+	@Test @Ignore
 	public void testGetAll() {
 		
 		logger.debug(" > testGetAll");

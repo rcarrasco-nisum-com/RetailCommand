@@ -29,6 +29,9 @@ dependencies {
     compile group: 'com.google.code.gson', name: 'gson', version: '2.3.1'
     compile "org.apache.commons:commons-csv:1.1"
     compile "commons-cli:commons-cli:1.2"
+    compile 'org.mybatis:mybatis:3.2.8'
+    compile 'org.mybatis:mybatis-spring:1.2.2'
+    compile "org.postgresql:postgresql:9.3-1100-jdbc4"
 }
 
 task path {
