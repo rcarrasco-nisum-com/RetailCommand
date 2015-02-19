@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import javax.annotation.Resource;
+
 import org.apache.commons.cli.BasicParser;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -36,6 +38,9 @@ public class CLICustomer {
 
 	private Options options;
 	
+	@Resource
+	private ApplicationContext applicationContext;
+	
 	public CLICustomer() {
 		super();
 		map = new HashMap<Option, CLICommand>();
@@ -44,9 +49,8 @@ public class CLICustomer {
 	
 	public static void main(String[] args) {
 		
-		ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring-app-config.xml");
 		CLICustomer cli = new CLICustomer();
-		cli.run(applicationContext, args);
+		cli.run(args);
 		
 	}
 	
@@ -58,8 +62,10 @@ public class CLICustomer {
 		
 	}
 
-	private void run(ApplicationContext applicationContext, String[] args) {
+	private void run(String[] args) {
 
+		applicationContext = new ClassPathXmlApplicationContext("spring-app-config.xml");
+		
 		// for (String arg : args)
 		// System.out.println("arg --> " + arg);
 		
@@ -100,6 +106,10 @@ public class CLICustomer {
 			logger.error(e);
 		}
 
+	}
+
+	public void setApplicationContext(ApplicationContext applicationContext) {
+		this.applicationContext = applicationContext;
 	}
 
 }

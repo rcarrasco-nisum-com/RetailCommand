@@ -1,11 +1,19 @@
 package com.nisum.model;
 
-public class Supplier {
+import java.io.Serializable;
+
+public class Supplier implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	private String name;
 	private String email;
 	private String phone;
 
+	public Supplier() {
+		super();
+	}
+	
 	public Supplier(String name, String email, String phone) {
 		super();
 		this.name = name;
@@ -37,4 +45,12 @@ public class Supplier {
 		this.phone = phone;
 	}
 
+	@Override
+	public String toString() {
+		StringBuffer sb = new StringBuffer();
+		sb.append("Name: ").append(this.name).append("; ");
+		sb.append("Email: ").append(this.email).append("; ");
+		sb.append("Phone: ").append(this.phone).append(";");
+		return sb.toString();
+	}
 }

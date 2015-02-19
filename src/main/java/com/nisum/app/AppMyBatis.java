@@ -2,7 +2,6 @@ package com.nisum.app;
 
 import java.util.List;
 
-import org.junit.Assert;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -23,7 +22,7 @@ public class AppMyBatis {
 	private void run(ApplicationContext applicationContext, String[] args) {
 
 		CustomerDao dao = applicationContext.getBean(CustomerMyBatisDaoImpl.class);
-		Assert.assertNotNull(dao);
+		// Assert.assertNotNull(dao);
 		
 		// CustomerMapper mapper = applicationContext.getBean(CustomerMapper.class);
 		// Assert.assertNotNull(mapper);

@@ -14,7 +14,7 @@ import com.nisum.service.CustomerService;
 public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired 
-	@Qualifier("customerMyBatisDaoImpl")
+	@Qualifier("customerCsvDaoImpl")
 	CustomerDao dao;
 	
 	@Override

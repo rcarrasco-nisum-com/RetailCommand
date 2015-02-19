@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import com.nisum.dao.CustomerDao;
 import com.nisum.dao.mapper.CustomerMapper;
 import com.nisum.model.Customer;
 
-@Component
+@Repository
 public class CustomerMyBatisDaoImpl implements CustomerDao {
 
 	@Autowired @Qualifier("customerMapper")
