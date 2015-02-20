@@ -46,13 +46,14 @@ public class EmployeeMyBatisDaoImpl implements EmployeeDao {
 		mapper.delete(employee);
 	}
 
-	@Override
-	public void save(List<Employee> list) {
-		// ...
-		if (list != null)
-			for (Employee employee : list) {
-				mapper.save(employee);
-			}
-	}
+//	@Override
+//	public void save(List<Employee> list) {
+//		
+//		if (list != null) {
+//			for (Employee employee : list) {
+//				mapper.save(employee);
+//			}
+//		}
+//	}
 
 }

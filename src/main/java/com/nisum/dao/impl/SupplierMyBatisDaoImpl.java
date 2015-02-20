@@ -22,14 +22,14 @@ public class SupplierMyBatisDaoImpl implements SupplierDao {
 		mapper.save(supplier);
 	}
 
-	@Override
-	public void save(List<Supplier> list) {
-		// ...
-		if (list != null)
-			for (Supplier supplier : list) {
-				mapper.save(supplier);
-			}
-	}
+//	@Override
+//	public void save(List<Supplier> list) {
+//		// ...
+//		if (list != null)
+//			for (Supplier supplier : list) {
+//				mapper.save(supplier);
+//			}
+//	}
 
 	@Override
 	public List<Supplier> getAll() {

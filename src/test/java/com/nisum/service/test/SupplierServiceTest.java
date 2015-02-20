@@ -52,16 +52,16 @@ public class SupplierServiceTest {
 		
 	}
 
-	@Test
-	public void testSaveListOfSupplier() {
-
-		logger.debug("testSaveListOfSupplier");
-		
-		service.save(list);
-		
-		Mockito.verify(dao).save(list);
-		
-	}
+//	@Test
+//	public void testSaveListOfSupplier() {
+//
+//		logger.debug("testSaveListOfSupplier");
+//		
+//		service.save(list);
+//		
+//		Mockito.verify(dao).save(list);
+//		
+//	}
 
 	@Test
 	public void testSave() {

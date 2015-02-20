@@ -52,30 +52,30 @@ public class SupplierDaoTest {
 		
 	}
 
-	@Test
-	public void testSaveListOfSupplier() {
+//	@Test
+//	public void testSaveListOfSupplier() {
+//
+//		logger.debug("testSaveListOfSupplier");
+//		logger.debug(list);
+//		
+//		dao.save(list);
+//		
+//		Mockito.verify(mapper).save(sodimac);
+//		Mockito.verify(mapper).save(easy);
+//		
+//	}
 
-		logger.debug("testSaveListOfSupplier");
-		logger.debug(list);
-		
-		dao.save(list);
-		
-		Mockito.verify(mapper).save(sodimac);
-		Mockito.verify(mapper).save(easy);
-		
-	}
-
-	@Test
-	public void testSaveNullListOfSupplier() {
-
-		logger.debug("testSaveNullListOfSupplier");
-		
-		List<Supplier> empty = null;
-		dao.save(empty);
-		
-		Mockito.verify(mapper, Mockito.never()).save(Mockito.any(Supplier.class));
-		
-	}
+//	@Test
+//	public void testSaveNullListOfSupplier() {
+//
+//		logger.debug("testSaveNullListOfSupplier");
+//		
+//		List<Supplier> empty = null;
+//		dao.save(empty);
+//		
+//		Mockito.verify(mapper, Mockito.never()).save(Mockito.any(Supplier.class));
+//		
+//	}
 	
 	@Test
 	public void testSave() {

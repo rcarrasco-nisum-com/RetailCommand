@@ -102,14 +102,14 @@ public class EmployeeServiceTest {
 		
 	}
 
-	@Test
-	public void testSaveListOfEmployee() {
-		
-		service.save(list);
-		
-		Mockito.verify(dao).save(peter);
-		Mockito.verify(dao).save(john);
-		
-	}
+//	@Test
+//	public void testSaveListOfEmployee() {
+//		
+//		service.save(list);
+//		
+//		Mockito.verify(dao).save(peter);
+//		Mockito.verify(dao).save(john);
+//		
+//	}
 
 }

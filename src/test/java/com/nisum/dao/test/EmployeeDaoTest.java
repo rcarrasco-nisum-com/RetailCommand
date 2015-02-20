@@ -45,15 +45,15 @@ public class EmployeeDaoTest {
 	
 	}
 
-	@Test
-	public void testSaveListOfEmployee() {
-		
-		dao.save(list);
-		
-		Mockito.verify(mapper).save(john);
-		Mockito.verify(mapper).save(peter);
-		
-	}
+//	@Test
+//	public void testSaveListOfEmployee() {
+//		
+//		dao.save(list);
+//		
+//		Mockito.verify(mapper).save(john);
+//		Mockito.verify(mapper).save(peter);
+//		
+//	}
 
 	@Test
 	public void testSave() {
@@ -113,4 +113,12 @@ public class EmployeeDaoTest {
 		
 	}
 
+	@Test
+	public void testDeleteNull() {
+		
+		dao.delete(null);
+		
+		Mockito.verify(mapper).delete(null);
+		
+	}
 }

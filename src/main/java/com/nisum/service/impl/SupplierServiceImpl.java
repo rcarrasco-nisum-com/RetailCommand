@@ -46,10 +46,10 @@ public class SupplierServiceImpl implements SupplierService {
 		dao.delete(supplier);
 	}
 
-	@Override
-	public void save(List<Supplier> list) {
-		// ...
-		dao.save(list);
-	}
+//	@Override
+//	public void save(List<Supplier> list) {
+//		// ...
+//		dao.save(list);
+//	}
 
 }

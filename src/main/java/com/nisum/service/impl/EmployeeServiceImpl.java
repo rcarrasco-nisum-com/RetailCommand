@@ -46,13 +46,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 		dao.delete(employee);
 	}
 
-	@Override
-	public void save(List<Employee> list) {
-		// ...
-		if (list != null)
-			for (Employee employee : list) {
-				dao.save(employee);
-			}
-	}
+//	@Override
+//	public void save(List<Employee> list) {
+//		// ...
+//		if (list != null)
+//			for (Employee employee : list) {
+//				dao.save(employee);
+//			}
+//	}
 
 }
