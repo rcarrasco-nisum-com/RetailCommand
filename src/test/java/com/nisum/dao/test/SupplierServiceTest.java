@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -53,17 +52,25 @@ public class SupplierServiceTest {
 		
 	}
 
-	@Test @Ignore
+	@Test
 	public void testSaveListOfSupplier() {
 
 		logger.debug("testSaveListOfSupplier");
 		
+		service.save(list);
+		
+		Mockito.verify(dao).save(list);
+		
 	}
 
-	@Test @Ignore
+	@Test
 	public void testSave() {
 		
 		logger.debug("testSave");
+		
+		service.save(easy);
+		
+		Mockito.verify(dao).save(easy);
 		
 	}
 
@@ -81,6 +88,8 @@ public class SupplierServiceTest {
 		Assert.assertEquals("comparing 1st element", list.get(0).getName(), suppliers.get(0).getName() );
 		Assert.assertEquals("comparing 2nd element", list.get(1).getEmail(), suppliers.get(1).getEmail() );
 		
+		Mockito.verify(dao).getAll();
+		
 	}
 
 	@Test
@@ -93,6 +102,8 @@ public class SupplierServiceTest {
 		List<Supplier> suppliers = service.getAll();
 		
 		Assert.assertNull("list must be null", suppliers);
+		
+		Mockito.verify(dao).getAll();
 		
 	}
 	
@@ -109,6 +120,8 @@ public class SupplierServiceTest {
 		Assert.assertEquals("emails must be equals", sodimac.getEmail(), response.getEmail());
 		Assert.assertEquals("phones must be equals", sodimac.getPhone(), response.getPhone());
 		
+		Mockito.verify(dao).get(sodimac.getName());
+		
 	}
 
 	@Test
@@ -121,19 +134,30 @@ public class SupplierServiceTest {
 		Supplier response = service.get(nisum.getName());
 		
 		Assert.assertNull("supplier must be null", response);
+		
+		Mockito.verify(dao).get(nisum.getName());
+		
 	}
 
-	@Test @Ignore
+	@Test
 	public void testUpdate() {
 		
 		logger.debug("testUpdate");
 		
+		service.update(easy);
+		
+		Mockito.verify(dao).update(easy);
+		
 	}
 
-	@Test @Ignore
+	@Test
 	public void testDelete() {
 		
 		logger.debug("testDelete");
+		
+		service.delete(easy);
+		
+		Mockito.verify(dao).delete(easy);
 		
 	}
 

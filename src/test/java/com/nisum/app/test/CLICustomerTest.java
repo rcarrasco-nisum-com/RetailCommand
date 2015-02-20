@@ -58,7 +58,7 @@ public class CLICustomerTest {
 		CLICustomer.main(args);
 		String msg = outContent.toString();
 		// Assert.assertTrue( msg.contains("Name: Pablo; Email: pdamaso@nisum.com; Phone: +56 9 94600161;") );
-		Assert.assertTrue( msg.contains("Name: Rafael; Email: rcarrasco@nisum.com; Phone: +56 9 67891234;") );
+		Assert.assertTrue( msg.contains("Name: Rafael; Email: rcarrasco@nisum.com; Phone: +56 9 87654321;") );
 		// Assert.assertTrue( msg.contains("Name: Roman; Email: rsteiner@nisum.com; Phone: +56 9 97654321;") );
 		logger.debug("testGetAll --> " + msg);
 	}
@@ -120,7 +120,7 @@ public class CLICustomerTest {
 		String[] firstGet = {"-G", "-S", "name=Rafael"};
 		CLICustomer.main(firstGet);
 		String msg = outContent.toString();
-		Assert.assertTrue( msg.contains("Name: Rafael; Email: rcarrasco@nisum.com; Phone: +56 9 67891234;") );
+		Assert.assertTrue( msg.contains("Name: Rafael; Email: rcarrasco@nisum.com; Phone: +56 9 87654321;") );
 		
 		String[] secondGet = {"-G", "-S", "name=Claudio"};
 		CLICustomer.main(secondGet);

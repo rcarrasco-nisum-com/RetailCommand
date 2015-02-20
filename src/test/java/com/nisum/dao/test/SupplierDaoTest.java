@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -53,20 +52,54 @@ public class SupplierDaoTest {
 		
 	}
 
-	@Test @Ignore
+	@Test
 	public void testSaveListOfSupplier() {
 
 		logger.debug("testSaveListOfSupplier");
+		logger.debug(list);
+		
+		dao.save(list);
+		
+		Mockito.verify(mapper).save(sodimac);
+		Mockito.verify(mapper).save(easy);
 		
 	}
 
-	@Test @Ignore
+	@Test
+	public void testSaveNullListOfSupplier() {
+
+		logger.debug("testSaveNullListOfSupplier");
+		
+		List<Supplier> empty = null;
+		dao.save(empty);
+		
+		Mockito.verify(mapper, Mockito.never()).save(Mockito.any(Supplier.class));
+		
+	}
+	
+	@Test
 	public void testSave() {
 		
 		logger.debug("testSave");
 		
+		dao.save(sodimac);
+		
+		Mockito.verify(mapper).save(sodimac);
+		
 	}
 
+	@Test
+	public void testSaveNull() {
+		
+		logger.debug("testSaveNull");
+		
+		Supplier empty = null;
+		dao.save(empty);
+		
+		Mockito.verify(mapper).save(empty);
+		
+	}
+	
 	@Test
 	public void testGetAllWithData() {
 
@@ -81,6 +114,8 @@ public class SupplierDaoTest {
 		Assert.assertEquals("comparing 1st element", list.get(0).getName(), suppliers.get(0).getName() );
 		Assert.assertEquals("comparing 2nd element", list.get(1).getEmail(), suppliers.get(1).getEmail() );
 		
+		Mockito.verify(mapper).getAll();
+		
 	}
 
 	@Test
@@ -93,6 +128,8 @@ public class SupplierDaoTest {
 		List<Supplier> suppliers = dao.getAll();
 		
 		Assert.assertNull("list must be null", suppliers);
+		
+		Mockito.verify(mapper).getAll();
 		
 	}
 	
@@ -109,6 +146,8 @@ public class SupplierDaoTest {
 		Assert.assertEquals("emails must be equals", sodimac.getEmail(), response.getEmail());
 		Assert.assertEquals("phones must be equals", sodimac.getPhone(), response.getPhone());
 		
+		Mockito.verify(mapper).get(sodimac.getName());
+		
 	}
 
 	@Test
@@ -121,19 +160,30 @@ public class SupplierDaoTest {
 		Supplier response = dao.get(nisum.getName());
 		
 		Assert.assertNull("supplier must be null", response);
+		
+		Mockito.verify(mapper).get(nisum.getName());
+		
 	}
 
-	@Test @Ignore
+	@Test 
 	public void testUpdate() {
 		
 		logger.debug("testUpdate");
 		
+		dao.update(sodimac);
+		
+		Mockito.verify(mapper).update(sodimac);
+		
 	}
 
-	@Test @Ignore
+	@Test 
 	public void testDelete() {
 		
 		logger.debug("testDelete");
+		
+		dao.delete(sodimac);
+		
+		Mockito.verify(mapper).delete(sodimac);
 		
 	}
 
