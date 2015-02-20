@@ -14,8 +14,6 @@ public interface SupplierMapper {
 	@Insert("INSERT INTO supplier(name, email, phone) VALUES (#{name}, #{email}, #{phone})")
 	void save(Supplier supplier);
 	
-	void save(List<Supplier> list);
-	
 	@Select("SELECT * FROM supplier")
 	List<Supplier> getAll();
 	

@@ -25,10 +25,10 @@ public class SupplierMyBatisDaoImpl implements SupplierDao {
 	@Override
 	public void save(List<Supplier> list) {
 		// ...
-		if (list == null) return;
-		for (Supplier supplier : list) {
-			mapper.save(supplier);
-		}
+		if (list != null)
+			for (Supplier supplier : list) {
+				mapper.save(supplier);
+			}
 	}
 
 	@Override

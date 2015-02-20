@@ -21,14 +21,19 @@
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
-	<bean id="supplierMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-		<property name="mapperInterface" value="com.nisum.dao.mapper.SupplierMapper" />
-		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
-	</bean>
-
 	<bean id="customerMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
 		<property name="mapperInterface" value="com.nisum.dao.mapper.CustomerMapper" />
 		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
 	</bean>
-	
+
+	<bean id="supplierMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.nisum.dao.mapper.SupplierMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>	
+
+	<bean id="employeeMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" value="com.nisum.dao.mapper.EmployeeMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+
 </beans>

@@ -1,4 +1,4 @@
-package com.nisum.dao.test;
+package com.nisum.service.test;
 
 import java.util.Arrays;
 import java.util.List;

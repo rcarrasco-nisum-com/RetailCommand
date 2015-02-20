@@ -24,8 +24,11 @@ public class CustomerMyBatisDaoImpl implements CustomerDao {
 
 	@Override
 	public void save(List<Customer> list) {
-		// TODO Auto-generated method stub
-
+		// ...
+		if (list != null)
+			for (Customer customer : list) {
+				mapper.save(customer);
+			}
 	}
 
 	@Override

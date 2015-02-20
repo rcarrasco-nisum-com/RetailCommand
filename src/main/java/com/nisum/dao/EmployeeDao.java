@@ -1,0 +1,11 @@
+package com.nisum.dao;
+
+import java.util.List;
+
+import com.nisum.model.Employee;
+
+public interface EmployeeDao extends Dao<Employee> {
+	
+	public void save(List<Employee> list);
+	
+}

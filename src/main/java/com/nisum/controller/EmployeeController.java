@@ -17,60 +17,61 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.nisum.model.Supplier;
-import com.nisum.service.SupplierService;
+import com.nisum.model.Employee;
+import com.nisum.service.EmployeeService;
 import com.wordnik.swagger.annotations.Api;
 
 @Controller
-@RequestMapping("/supplier")
-@Api(value = "supplier", description = "supplier front-end!")
-public class SupplierController {
+@RequestMapping("/employee")
+@Api(value = "employee", description = "employee front-end!")
+public class EmployeeController {
 
-	public static final Logger logger = LogManager.getLogger();
+	private static final Logger logger = LogManager.getLogger();
 	
 	@Autowired
-	private SupplierService service;
+	private EmployeeService service;
 	
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Supplier> getAll() {
-		
+	public List<Employee> getAll() {
+		// ...
 		return service.getAll();
 	}
 	
 	@RequestMapping(value = "/{name}", method = RequestMethod.GET)
 	@ResponseBody
-	public Supplier get(@PathVariable(value="name") String name) {
-		
+	public Employee get(@PathVariable(value = "name") String name) {
+		// ...
 		return service.get(name);
 	}
 	
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	@ResponseStatus(HttpStatus.CREATED)
-	public void create(@RequestBody Supplier supplier, HttpServletResponse response) {
-		
-		service.save(supplier);
+	public void create(@RequestBody Employee employee, HttpServletResponse response) {
+		// ...
+		logger.debug("create --> " + employee);
+		service.save(employee);
 		String location = ServletUriComponentsBuilder.fromCurrentRequest()
-				.pathSegment("{id}").buildAndExpand(supplier.getName())
+				.pathSegment("{id}").buildAndExpand(employee.getName())
 				.toUriString();
 		response.setHeader("Location",location);	
 	}
 	
 	@RequestMapping(value = "", method = RequestMethod.PUT)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void update(@RequestBody Supplier supplier) {
-		
-		service.update(supplier);
+	public void update(@RequestBody Employee employee) {
+		// ...
+		logger.debug("update --> " + employee);
+		service.update(employee);
 	}
 	
 	@RequestMapping(value = "/{name}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable(value = "name") String name) {
-
-		Supplier supplier = service.get(name);
-		if (supplier != null) 
-			service.delete(supplier);
-
+		// ...
+		Employee employee = service.get(name);
+		if (employee != null)
+			service.delete(employee);
 	}
 	
 }

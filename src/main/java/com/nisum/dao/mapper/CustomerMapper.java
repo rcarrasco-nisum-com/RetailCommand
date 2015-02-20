@@ -14,8 +14,6 @@ public interface CustomerMapper {
 	@Insert("INSERT INTO customer(name, email, phone) VALUES (#{name}, #{email}, #{phone})")
 	void save(Customer customer);
 	
-	void save(List<Customer> list);
-	
 	@Select("SELECT * FROM customer")
 	List<Customer> getAll();
 	
