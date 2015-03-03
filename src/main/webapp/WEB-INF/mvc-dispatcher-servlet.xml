@@ -15,6 +15,7 @@
     <context:component-scan base-package="com.nisum.model"/>
     <context:component-scan base-package="com.nisum.service"/>
     <context:component-scan base-package="com.nisum.app"/>
+    <context:component-scan base-package="com.nisum.ui"/>
 	
 	<mvc:resources location="/swagger-ui/" mapping="/swagger-ui/**" />
 

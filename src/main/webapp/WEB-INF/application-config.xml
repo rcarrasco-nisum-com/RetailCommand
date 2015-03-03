@@ -12,5 +12,11 @@
 <!-- 
 	<import resource="hibernateContext.xml" /> 
 -->
+
+	<bean id="custDao" name="custDao" class="com.nisum.dao.impl.CustomerCsvDaoImpl"></bean>
 	
+	<bean id="custService" name="custService" class="com.nisum.service.impl.CustomerServiceImpl">
+		<property name="dao" ref="custDao"></property>
+	</bean>
+
 </beans>

@@ -13,9 +13,16 @@ import com.nisum.service.CustomerService;
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
-	@Autowired 
-	@Qualifier("customerCsvDaoImpl")
-	CustomerDao dao;
+	@Autowired @Qualifier("customerCsvDaoImpl")
+	private CustomerDao dao;
+	
+	public CustomerDao getDao() {
+		return dao;
+	}
+
+	public void setDao(CustomerDao obj) {
+		dao = obj;
+	}
 	
 	@Override
 	public void save(Customer customer) {

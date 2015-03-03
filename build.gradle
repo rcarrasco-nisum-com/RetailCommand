@@ -2,9 +2,20 @@ apply plugin: 'java'
 // apply plugin: 'jetty'
 apply plugin: 'war'
 apply plugin: 'eclipse'
+apply plugin: "fi.jasoft.plugin.vaadin"
 
 sourceCompatibility = 1.7
 version = '1.0'
+vaadin.version '7.3.1'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "fi.jasoft.plugin:gradle-vaadin-plugin:0.9.7"
+    }
+}
 
 repositories {
     mavenCentral()
@@ -32,6 +43,15 @@ dependencies {
     compile 'org.mybatis:mybatis:3.2.8'
     compile 'org.mybatis:mybatis-spring:1.2.2'
     compile "org.postgresql:postgresql:9.3-1100-jdbc4"
+    // compile 'com.vaadin:vaadin:7.3.1'
+    compile "com.vaadin:vaadin-client-compiled:${vaadin.version}"
+    compile "com.vaadin:vaadin-client:${vaadin.version}"
+    compile "com.vaadin:vaadin-push:${vaadin.version}"
+    compile "com.vaadin:vaadin-themes:${vaadin.version}"
+    compile "com.vaadin:vaadin-server:${vaadin.version}"
+    compile "com.vaadin.addon:jpacontainer:3.2.0"
+    compile "org.eclipse.persistence:eclipselink:2.2.0"
+    compile "org.hibernate:hibernate-validator:4.2.0.Final"
 }
 
 task path {
